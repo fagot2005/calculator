@@ -5,7 +5,8 @@ import java.util.Scanner;
 public class Calculator {
     public static void main(String[] args) throws IllegalAccessException {
         System.out.println("Введите пример в следующем формате: 3 + 2 или III + II, и нажмите ENTER");
-        double resalt = 0;
+        String resalt = "";
+        double resaltRomanNumerals = 0;
         Scanner scanner = new Scanner(System.in);
         String[] input = scanner.nextLine().split(" ");
         scanner.close();
@@ -18,7 +19,7 @@ public class Calculator {
             if (first < 1 || first > 10 || three < 1 || three > 10) {
                 throw new IllegalArgumentException("Необходимо ввести число в диапазоне от 1 до 10");
             } else {
-                resalt = new CalculatorLogic(first, input[1], three).calculate();
+                resalt = String.valueOf(new CalculatorLogic(first, input[1], three).calculate());
             }
         } else {
             double first = new RomanNumerals(input[0]).maping();
@@ -26,7 +27,9 @@ public class Calculator {
             if (first == -1 || three == -1) {
                 throw new IllegalArgumentException("Введено римское число не соотвествующее шаблону: I, II, III, IV, V, VI, VII, VIII, IX, X");
             } else {
-                resalt = new CalculatorLogic(first, input[1], three).calculate();
+                
+                resaltRomanNumerals = new CalculatorLogic(first, input[1], three).calculate();
+                resalt = new RomanNumerals(String.valueOf((int) resaltRomanNumerals)).intToRomanNumerals();
             }
         }
         System.out.println(resalt);

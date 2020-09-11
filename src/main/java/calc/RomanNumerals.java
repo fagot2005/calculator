@@ -23,7 +23,11 @@ public class RomanNumerals {
             put("VIII", 8);
             put("IX", 9);
             put("X", 10);
-        }
+            put("C", 100);
+            put("XC", 90);
+            put("L", 50);
+            put("XL", 40);
+            }
     };
 
     public double maping(){
@@ -38,5 +42,16 @@ public class RomanNumerals {
             }
         }
         return resalt;
+    }
+
+    public String intToRomanNumerals() {
+        String resaltStr = "";
+        for (Map.Entry<String, Integer> map : INT_MAPER.entrySet()
+             ) {
+            if (Integer.parseInt(this.input) == map.getValue()) {
+                resaltStr = map.getKey();
+            }
+        }
+        return resaltStr;
     }
 }
